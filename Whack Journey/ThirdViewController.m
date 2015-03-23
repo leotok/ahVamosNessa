@@ -75,7 +75,6 @@
     
     UIButton *medio = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/10.666, self.view.frame.size.height/1.93, self.view.frame.size.width/1.231, self.view.frame.size.height/5.68)];
     medio.tag = 1;
-    [medio setImage:[UIImage imageNamed:@"SlotLocked2.png"] forState:UIControlStateNormal];
     [medio addTarget:self action:@selector(prox:) forControlEvents:UIControlEventTouchUpInside];
     
     if([[self.settings objectAtIndex:1] integerValue] == 1)
@@ -84,18 +83,28 @@
         medio.enabled = YES;
     }
     else
+    {
         medio.enabled = NO;
-    
+        [medio setImage:[UIImage imageNamed:@"SlotLocked2.png"] forState:UIControlStateNormal];
+    }
     
     UIButton *dificil = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/10.666, self.view.frame.size.height/1.34, self.view.frame.size.width/1.231, self.view.frame.size.height/5.68)];
     dificil.tag = 2;
-    [dificil setImage:[UIImage imageNamed:@"SlotLocked3.png"] forState:UIControlStateNormal];
     [dificil addTarget:self action:@selector(prox:) forControlEvents:UIControlEventTouchUpInside];
-    dificil.enabled = NO;
+    
+    if([[self.settings objectAtIndex:2] integerValue] == 1)
+    {
+        [dificil setImage:[UIImage imageNamed:@"Levels_Fase3Open_Button.png"] forState:UIControlStateNormal];
+        dificil.enabled = YES;
+    }
+    else
+    {
+        dificil.enabled = NO;
+        [dificil setImage:[UIImage imageNamed:@"SlotLocked3.png"] forState:UIControlStateNormal];
+    }    
     
     
     UIButton *back = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/32, self.view.frame.size.height/56.8, self.view.frame.size.width/10.667, self.view.frame.size.height/18.933)];
-    [back setImage:[UIImage imageNamed:@"Levels_BackB.png"] forState:UIControlStateNormal];
     [back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -127,7 +136,7 @@
         [self.dict writeToFile:path atomically:YES];
         
         CinematicsViewController *cvc = [[CinematicsViewController alloc] init];
-        cvc.difficulty = sender.tag;
+        cvc.difficulty = (int)sender.tag;
         cvc.tope = self.tope;
         cvc.audioPlayer = self.audioPlayer;
         [self.backgroundMusic stop];
@@ -139,7 +148,7 @@
         if(sender.tag == 0)
         {
             FourthViewController *fvc = [[FourthViewController alloc] init];
-            fvc.difficulty = sender.tag;
+            fvc.difficulty =  (int)sender.tag;
             fvc.tope = self.tope;
             fvc.audioPlayer = self.audioPlayer;
             [self.backgroundMusic stop];
@@ -148,7 +157,7 @@
         else if(sender.tag == 1)
         {
             Fase2ViewController *fvc = [[Fase2ViewController alloc] init];
-            fvc.difficulty = sender.tag;
+            fvc.difficulty =  (int)sender.tag;
             fvc.tope = self.tope;
             fvc.audioPlayer = self.audioPlayer;
             [self.backgroundMusic stop];

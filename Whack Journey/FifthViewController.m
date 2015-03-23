@@ -38,10 +38,9 @@
     
     self.settings = [NSMutableArray arrayWithArray:[self.dict objectForKey:@"settings"]];
     
-    scoreToWin = 800;
-    if(self.acertos >= scoreToWin)
+    if(self.winOrLose && (self.dificuldade == 0 || self.dificuldade == 1))
     {
-        [self.settings replaceObjectAtIndex:1 withObject:@"1"];
+        [self.settings replaceObjectAtIndex:self.dificuldade + 1 withObject:@"1"];
         [self.dict setObject:self.settings forKey:@"settings"];
         [self.dict writeToFile:path atomically:YES];
     }
@@ -77,7 +76,7 @@
         aviso.frame = CGRectMake(self.view.frame.size.width/1.67, self.view.frame.size.height/3.4, self.view.frame.size.width/2.667, self.view.frame.size.height/11.36);
         imgBackground = [UIImage imageNamed:@"Defeated_BG.png"];
         self.scoreBox = [[UIImageView alloc] initWithImage:[UIImage imageNamed: @"Defeated_Score.png"]];
-        self.scoreBox.frame = CGRectMake(self.view.frame.size.width/1.777, self.view.frame.size.height/5, 222/1.5, 211/1.5);
+        self.scoreBox.frame = CGRectMake(self.view.frame.size.width/1.65, self.view.frame.size.height/4.4, 222/1.5, 211/1.5);
     }
     
     UIImageView *background = [[UIImageView alloc] initWithImage:imgBackground];

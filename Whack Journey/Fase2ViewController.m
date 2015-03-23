@@ -81,7 +81,7 @@
     
     // imagens e labels
     
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Level_2_Background.png"]];
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Level_2_Background+Menu+Crat.png"]];
     background.frame = self.view.frame;
     
     self.label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/5.333, 0, self.view.frame.size.width/1.6, self.view.frame.size.height/9.467)];
@@ -154,10 +154,6 @@
     
     // crateras
     
-    UIImageView *crateras = [[UIImageView alloc] initWithFrame:CGRectMake(14, 403/1.97, 610/2, 695/2)];
-    [crateras setImage:[UIImage imageNamed:@"Level_2_FrontCat.png"]];
-    [self.view addSubview:crateras];
-    
    /* UIImageView *cratera1 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/22.07, self.view.frame.size.height/1.095,self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
     [cratera1 setImage:[UIImage imageNamed:@"Crat_1.png"]];
     [self.view addSubview:cratera1];
@@ -198,7 +194,7 @@
     self.faceShifterAcertou = 1;
     self.faceShifterTempo = 0;
     self.vidas = 3;
-    self.scoreToWin = 400;
+    self.scoreToWin = 100;
     self.marteloCount = 0;
     
     // verifica a dificuldade escolhida e define o tempo de aparição da toupeira
@@ -596,7 +592,7 @@
 {
     int fim,i,troca;
     
-    for (fim = [a1 count]-1; fim > 0 ; fim--)
+    for (fim = (int)[a1 count]-1; fim > 0 ; fim--)
     {
         troca = 0;
         for(i = 0; i < fim; i++)

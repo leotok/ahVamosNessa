@@ -196,7 +196,7 @@
     self.faceShifterAcertou = 1;
     self.faceShifterTempo = 0;
     self.vidas = 3;
-    self.scoreToWin = 800;
+    self.scoreToWin = 100;
     self.marteloCount = 0;
     self.edPosition = 10;
     self.faceShifterPosition = 10;
