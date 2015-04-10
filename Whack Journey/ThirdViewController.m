@@ -41,11 +41,15 @@
         self.dict = [[NSMutableDictionary alloc] init];
     else
         self.settings = [NSMutableArray arrayWithArray:[self.dict objectForKey:@"settings"]];
-    if ([self.settings count] == 0)
+    if ([self.settings count] < 3)
     {
+        if ([self.settings count] != 0)
+        {
+            [self.settings removeAllObjects];
+        }
         [self.settings addObject:@"0"];   // 0 - primeira vez / 1 - ja viu cinematics
         [self.settings addObject:@"0"]; // 0 - nao liberou 2a fase / 1 - liberou
-        [self.settings addObject:@"0"]; // 0 - nao liberou 3a fase / 1 - liberou
+        [self.settings addObject:@"1"]; // 0 - nao liberou 3a fase / 1 - liberou
     }
     
     // imagens e labels

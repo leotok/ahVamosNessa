@@ -278,11 +278,6 @@
     {
         randomPosition = arc4random()%9;
     }
-//    while((p.origin.x == self.faceShifterImage.frame.origin.x )&& (p.origin.y == self.faceShifterImage.frame.origin.y))
-//    {
-//        val = [self.array objectAtIndex:arc4random()%9];
-//        p = [val CGRectValue];
-//    }
     
     self.edPosition = randomPosition;
     NSValue *val = [self.array objectAtIndex:randomPosition];

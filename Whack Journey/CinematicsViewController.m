@@ -47,10 +47,6 @@
     {
         self.settings = [NSMutableArray arrayWithArray:[self.dict objectForKey:@"settings"]];
     }
-    if ([self.settings count] == 0)
-    {
-        [self.settings addObject:@"0"];   // 0 - primeira vez / 1 - ja viu cinematics
-    }
     
     [self.settings replaceObjectAtIndex:0 withObject:@"1"];
     [self.dict setObject:self.settings forKey:@"settings"];

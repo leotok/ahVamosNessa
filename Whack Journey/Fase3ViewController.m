@@ -14,9 +14,11 @@
 @property CGFloat translacao;
 @property int edCount;
 @property int edAcertou;
+@property int edPosition;
 @property int contador;
 @property int faceShifterAcertou;
 @property int faceShifterCount;
+@property int faceShifterPosition;
 @property int vidas;
 @property int scoreToWin;
 @property int marteloCount;
@@ -133,11 +135,11 @@
     // array com as possíveis posições da toupeira
     
     self.array = [NSArray arrayWithObjects:
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/14, self.view.frame.size.height/2.5,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/2.2, self.view.frame.size.height/3,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.4, self.view.frame.size.height/4.2,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/4.9, self.view.frame.size.height/1.83,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.6, self.view.frame.size.height/2.1,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/20, self.view.frame.size.height/2.5,self.view.frame.size.width/4,self.view.frame.size.height/7.1)], //
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/20, self.view.frame.size.height/5.6,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],//
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.4, self.view.frame.size.height/2.24,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],//
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/3.3, self.view.frame.size.height/2,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],//
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.4, self.view.frame.size.height/1.6,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
                   [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/18, self.view.frame.size.height/1.46,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
                   [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.83, self.view.frame.size.height/1.55,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
                   [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/3.3, self.view.frame.size.height/1.28,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
@@ -267,13 +269,16 @@
     [self.edImage removeFromSuperview];
     self.edAcertou = 0;
     self.edImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ED_SF3"]];
-    NSValue *val = [self.array objectAtIndex:arc4random()%9];
-    CGRect p = [val CGRectValue];
-    while((p.origin.x == self.faceShifterImage.frame.origin.x )&& (p.origin.y == self.faceShifterImage.frame.origin.y))
+    int randomPosition = arc4random()%9;
+    
+    while (randomPosition == self.faceShifterPosition)
     {
-        val = [self.array objectAtIndex:arc4random()%9];
-        p = [val CGRectValue];
+        randomPosition = arc4random()%9;
     }
+    randomPosition = 4;
+    self.edPosition = randomPosition;
+    NSValue *val = [self.array objectAtIndex:randomPosition];
+    CGRect p = [val CGRectValue];
     self.edImage.frame = p;
     [self.view addSubview:self.edImage];
     self.edImage.userInteractionEnabled = YES;
@@ -331,11 +336,11 @@
 {
     if(![self.martelo isAnimating] && self.marteloCount == 1)
     {
+        self.edPosition = 10;
         [self.removeEdTimer invalidate];
         [self.edImage removeFromSuperview];
         [self perdeVida];
-    }
-}
+    }}
 
 
 // METODOS USADOS PARA GERAR E TRATAR O FACESHIFTER
@@ -361,15 +366,18 @@
         [self.faceShifterImage removeFromSuperview];
         self.faceShifterAcertou = 0;
         self.faceShifterImage = [[UIImageView alloc]initWithImage:self.faceShifterActualImage.image ];
-        NSValue *val = [self.array objectAtIndex:arc4random()%9];
-        CGRect p = [val CGRectValue];
-        while((p.origin.x == self.edImage.frame.origin.x )&& (p.origin.y == self.edImage.frame.origin.y))
+        
+        int randomPosition = arc4random()%9;
+        
+        while (randomPosition == self.edPosition)
         {
-            val = [self.array objectAtIndex:arc4random()%9];
-            p = [val CGRectValue];
+            randomPosition = arc4random()%9;
         }
         
+        self.faceShifterPosition = randomPosition;
         
+        NSValue *val = [self.array objectAtIndex:randomPosition];
+        CGRect p = [val CGRectValue];
         self.faceShifterImage.frame = p;
         [self.view addSubview:self.faceShifterImage];
         self.faceShifterImage.userInteractionEnabled = YES;
@@ -377,6 +385,7 @@
         tap.numberOfTapsRequired = 1;
         [self.faceShifterImage addGestureRecognizer:tap];
     }
+    
 }
 
 -(void)faceShifterHit
@@ -420,8 +429,7 @@
     self.marteloCount = 1;
     [self.martelo startAnimating];
     
-    self.faceShifterImage.image = [UIImage imageNamed:@"MF_SF8.png"];
-    
+    self.faceShifterImage.image = [UIImage imageNamed:@"Mini_Dead_Shifter.png"];
     
 }
 
@@ -429,6 +437,7 @@
 {
     if(![self.martelo isAnimating] && self.marteloCount == 1)
     {
+        self.faceShifterPosition = 10;
         [self.removeFaceShifterTimer invalidate];
         [self.faceShifterImage removeFromSuperview];
     }
