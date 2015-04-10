@@ -5,6 +5,7 @@
 #import "RankingViewController.h"
 #import "ViewController.h"
 #import "Fase2ViewController.h"
+#import "Fase3ViewController.h"
 
 @interface FifthViewController ()
 @property (strong, nonatomic) AVAudioPlayer *backgroundMusic;
@@ -143,7 +144,7 @@
 // botão para jogar novamente
 
 - (void)jogarNovamente:(id)sender {
-    if(self.dificuldade)
+    if(self.dificuldade == 1)
     {
         Fase2ViewController *fvc = [[Fase2ViewController alloc] init];
         fvc.difficulty = self.dificuldade;
@@ -152,9 +153,18 @@
         [self.backgroundMusic stop];
         [self presentViewController:fvc animated:NO completion:nil];
     }
-    else
+    else if(self.dificuldade == 0)
     {
         FourthViewController *fvc = [[FourthViewController alloc] init];
+        fvc.difficulty = self.dificuldade;
+        fvc.tope = self.tope;
+        fvc.audioPlayer = self.audioPlayer;
+        [self.backgroundMusic stop];
+        [self presentViewController:fvc animated:NO completion:nil];
+    }
+    else
+    {
+        Fase3ViewController *fvc = [[Fase3ViewController alloc] init];
         fvc.difficulty = self.dificuldade;
         fvc.tope = self.tope;
         fvc.audioPlayer = self.audioPlayer;

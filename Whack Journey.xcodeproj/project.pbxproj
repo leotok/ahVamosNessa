@@ -432,6 +432,9 @@
 			isa = PBXGroup;
 			children = (
 				3FFE6E0D1A9BBDB9008E0F11 /* AppDelegate */,
+				3F67EBE61AD8619E00FF8B97 /* Controller */,
+				3F67EBE51AD8619A00FF8B97 /* View */,
+				3F67EBE41AD8619400FF8B97 /* Model */,
 				3FFE6E0E1A9BBDC4008E0F11 /* Inicio */,
 				3FFE6E0F1A9BBDF2008E0F11 /* Dificuldade */,
 				3FFE6E101A9BBE03008E0F11 /* Settings */,
@@ -442,8 +445,6 @@
 				0C714D521A8B772C008CD222 /* Images.xcassets */,
 				0C714D541A8B772C008CD222 /* LaunchScreen.xib */,
 				0C714D451A8B772C008CD222 /* Supporting Files */,
-				3F903E661A9D0ABB003EB43B /* FaceShifter.h */,
-				3F903E671A9D0ABB003EB43B /* FaceShifter.m */,
 			);
 			path = "Whack Journey";
 			sourceTree = "<group>";
@@ -951,6 +952,29 @@
 			name = Icones;
 			sourceTree = "<group>";
 		};
+		3F67EBE41AD8619400FF8B97 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3F903E661A9D0ABB003EB43B /* FaceShifter.h */,
+				3F903E671A9D0ABB003EB43B /* FaceShifter.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3F67EBE51AD8619A00FF8B97 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		3F67EBE61AD8619E00FF8B97 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		3F81AF831AC080B9009CDDEA /* Level_2 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1444,6 +1468,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Whack Journey/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1455,6 +1480,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "Whack Journey/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

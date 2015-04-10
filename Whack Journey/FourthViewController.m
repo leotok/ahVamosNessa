@@ -196,7 +196,7 @@
     self.faceShifterAcertou = 1;
     self.faceShifterTempo = 0;
     self.vidas = 3;
-    self.scoreToWin = 100;
+    self.scoreToWin = 800;
     self.marteloCount = 0;
     self.edPosition = 10;
     self.faceShifterPosition = 10;
@@ -607,7 +607,7 @@
 {
     int fim,i,troca;
     
-    for (fim = [a1 count]-1; fim > 0 ; fim--)
+    for (fim = (int)[a1 count]-1; fim > 0 ; fim--)
     {
         troca = 0;
         for(i = 0; i < fim; i++)

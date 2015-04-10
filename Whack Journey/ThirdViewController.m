@@ -4,6 +4,7 @@
 #import "ViewController.h"
 #import "CinematicsViewController.h"
 #import "Fase2ViewController.h"
+#import "Fase3ViewController.h"
 
 @interface ThirdViewController ()
 
@@ -162,7 +163,15 @@
             fvc.audioPlayer = self.audioPlayer;
             [self.backgroundMusic stop];
             [self presentViewController:fvc animated:NO completion:nil];
-
+        }
+        else
+        {
+            Fase3ViewController *fvc = [[Fase3ViewController alloc]init];
+            fvc.difficulty =  (int)sender.tag;
+            fvc.tope = self.tope;
+            fvc.audioPlayer = self.audioPlayer;
+            [self.backgroundMusic stop];
+            [self presentViewController:fvc animated:NO completion:nil];
         }
     }
 }

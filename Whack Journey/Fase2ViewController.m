@@ -194,7 +194,7 @@
     self.faceShifterAcertou = 1;
     self.faceShifterTempo = 0;
     self.vidas = 3;
-    self.scoreToWin = 100;
+    self.scoreToWin = 400;
     self.marteloCount = 0;
     
     // verifica a dificuldade escolhida e define o tempo de aparição da toupeira
@@ -206,12 +206,12 @@
     }
     else if(self.difficulty == 1)
     {
-        self.faceShifterTempo = 1;
+        self.faceShifterTempo = 1.3;
         self.edTempo = 1.5;
     }
     else
     {
-        self.faceShifterTempo = 0.5;
+        self.faceShifterTempo = 1.1;
         self.edTempo = 1;
     }
     

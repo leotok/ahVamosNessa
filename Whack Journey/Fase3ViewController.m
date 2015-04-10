@@ -1,4 +1,6 @@
+
 #import "Fase3ViewController.h"
+
 #import "FifthViewController.h"
 #import "ThirdViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -12,18 +14,15 @@
 @property CGFloat translacao;
 @property int edCount;
 @property int edAcertou;
-@property int edPosition;
 @property int contador;
 @property int faceShifterAcertou;
 @property int faceShifterCount;
-@property int faceShifterPosition;
 @property int vidas;
 @property int scoreToWin;
 @property int marteloCount;
 
 @property (strong,nonatomic) AVAudioPlayer *backgroundMusic;
 @property (strong,nonatomic) NSArray *array;
-@property (strong,nonatomic) NSMutableArray *arrayCrateras;
 @property NSMutableArray *scores;
 @property NSMutableArray *nomes;
 @property NSMutableDictionary *dict;
@@ -82,7 +81,7 @@
     
     // imagens e labels
     
-    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Level_1_BG_WithBackCat.png"]];
+    UIImageView *background = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Level_3_Background"]];
     background.frame = self.view.frame;
     
     self.label = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/5.333, 0, self.view.frame.size.width/1.6, self.view.frame.size.height/9.467)];
@@ -101,7 +100,7 @@
     self.edHead3 = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Level_1_EdHead.png"]];
     self.edHead3.frame = CGRectMake(self.view.frame.size.width/5.079, self.view.frame.size.height/37.867, self.view.frame.size.width/10.667, self.view.frame.size.height/18.933);
     
-    self.spaceship = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Level_1_BackShip.png"]];
+    // self.spaceship = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Level_1_BackShip.png"]];
     
     // botões
     
@@ -127,23 +126,22 @@
     }
     else
     {
-        self.faceShifterActualImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"Mini_Shifter_Masked.png"]];
+        self.faceShifterActualImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"faceshifter.png"]];
     }
     
     
     // array com as possíveis posições da toupeira
     
-    self.array = [NSArray arrayWithObjects: [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/2.56, self.view.frame.size.height/3.463,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/6.038, self.view.frame.size.height/2.45,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.454, self.view.frame.size.height/2.71,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.435, self.view.frame.size.height/1.932,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/2.667, self.view.frame.size.height/1.77,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/18.823, self.view.frame.size.height/1.656,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/2.667, self.view.frame.size.height/1.406,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/16, self.view.frame.size.height/1.279,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.435, self.view.frame.size.height/1.279,self.view.frame.size.width/4,self.view.frame.size.height/7.1)], nil];
-    
-    self.arrayCrateras = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0", nil];
+    self.array = [NSArray arrayWithObjects:
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/14, self.view.frame.size.height/2.5,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/2.2, self.view.frame.size.height/3,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.4, self.view.frame.size.height/4.2,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/4.9, self.view.frame.size.height/1.83,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.6, self.view.frame.size.height/2.1,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/18, self.view.frame.size.height/1.46,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.83, self.view.frame.size.height/1.55,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/3.3, self.view.frame.size.height/1.28,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.47, self.view.frame.size.height/1.33,self.view.frame.size.width/4,self.view.frame.size.height/7.1)], nil];
     
     // adiciona tudo a view
     
@@ -156,33 +154,33 @@
     
     // crateras
     
-    UIImageView *cratera1 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/22.07, self.view.frame.size.height/1.095,self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
-    [cratera1 setImage:[UIImage imageNamed:@"Crat_1.png"]];
-    [self.view addSubview:cratera1];
-    UIImageView *cratera2 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.819, self.view.frame.size.height/1.182, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
-    [cratera2 setImage:[UIImage imageNamed:@"Crat_2.png"]];
-    [self.view addSubview:cratera2];
-    UIImageView *cratera3 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/1.48, self.view.frame.size.height/1.095, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
-    [cratera3 setImage:[UIImage imageNamed:@"Crat_3.png"]];
-    [self.view addSubview:cratera3];
-    UIImageView *cratera4 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/47.06, self.view.frame.size.height/1.358, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
-    [cratera4 setImage:[UIImage imageNamed:@"Crat_4.png"]];
-    [self.view addSubview:cratera4];
-    UIImageView *cratera5 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.819, self.view.frame.size.height/1.439, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
-    [cratera5 setImage:[UIImage imageNamed:@"Crat_5.png"]];
-    [self.view addSubview:cratera5];
-    UIImageView *cratera6 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/1.458, self.view.frame.size.height/1.53, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
-    [cratera6 setImage:[UIImage imageNamed:@"Crat_6.png"]];
-    [self.view addSubview:cratera6];
-    UIImageView *cratera7 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/6.35, self.view.frame.size.height/1.88, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
-    [cratera7 setImage:[UIImage imageNamed:@"Crat_7.png"]];
-    [self.view addSubview:cratera7];
-    UIImageView *cratera8 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.57, self.view.frame.size.height/2.42, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
-    [cratera8 setImage:[UIImage imageNamed:@"Crat_8.png"]];
-    [self.view addSubview:cratera8];
-    UIImageView *cratera9 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/1.47, self.view.frame.size.height/2.01, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
-    [cratera9 setImage:[UIImage imageNamed:@"Crat_9.png"]];
-    [self.view addSubview:cratera9];
+    /* UIImageView *cratera1 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/22.07, self.view.frame.size.height/1.095,self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
+     [cratera1 setImage:[UIImage imageNamed:@"Crat_1.png"]];
+     [self.view addSubview:cratera1];
+     UIImageView *cratera2 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.819, self.view.frame.size.height/1.182, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
+     [cratera2 setImage:[UIImage imageNamed:@"Crat_2.png"]];
+     [self.view addSubview:cratera2];
+     UIImageView *cratera3 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/1.48, self.view.frame.size.height/1.095, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
+     [cratera3 setImage:[UIImage imageNamed:@"Crat_3.png"]];
+     [self.view addSubview:cratera3];
+     UIImageView *cratera4 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/47.06, self.view.frame.size.height/1.358, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
+     [cratera4 setImage:[UIImage imageNamed:@"Crat_4.png"]];
+     [self.view addSubview:cratera4];
+     UIImageView *cratera5 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.819, self.view.frame.size.height/1.439, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
+     [cratera5 setImage:[UIImage imageNamed:@"Crat_5.png"]];
+     [self.view addSubview:cratera5];
+     UIImageView *cratera6 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/1.458, self.view.frame.size.height/1.53, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
+     [cratera6 setImage:[UIImage imageNamed:@"Crat_6.png"]];
+     [self.view addSubview:cratera6];
+     UIImageView *cratera7 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/6.35, self.view.frame.size.height/1.88, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
+     [cratera7 setImage:[UIImage imageNamed:@"Crat_7.png"]];
+     [self.view addSubview:cratera7];
+     UIImageView *cratera8 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2.57, self.view.frame.size.height/2.42, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
+     [cratera8 setImage:[UIImage imageNamed:@"Crat_8.png"]];
+     [self.view addSubview:cratera8];
+     UIImageView *cratera9 = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/1.47, self.view.frame.size.height/2.01, self.view.frame.size.width/3.44,self.view.frame.size.height/17.21)];
+     [cratera9 setImage:[UIImage imageNamed:@"Crat_9.png"]];
+     [self.view addSubview:cratera9];*/
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -196,11 +194,8 @@
     self.faceShifterAcertou = 1;
     self.faceShifterTempo = 0;
     self.vidas = 3;
-    self.scoreToWin = 100;
+    self.scoreToWin = 400;
     self.marteloCount = 0;
-    self.edPosition = 10;
-    self.faceShifterPosition = 10;
-    
     
     // verifica a dificuldade escolhida e define o tempo de aparição da toupeira
     
@@ -211,21 +206,21 @@
     }
     else if(self.difficulty == 1)
     {
-        self.faceShifterTempo = 1;
+        self.faceShifterTempo = 1.3;
         self.edTempo = 1.5;
     }
     else
     {
-        self.faceShifterTempo = 0.5;
+        self.faceShifterTempo = 1.1;
         self.edTempo = 1;
     }
     
     // cria timers (actions) do faceshifter, ed e nave
     
     self.translacao = 1;
-    self.spaceship.frame = CGRectMake(0, self.view.frame.size.height/6.31, self.view.frame.size.width/3.555, self.view.frame.size.height/11.36);
+    //self.spaceship.frame = CGRectMake(0, self.view.frame.size.height/6.31, self.view.frame.size.width/3.555, self.view.frame.size.height/11.36);
     
-    self.nave = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(moveNave) userInfo:nil repeats:YES];
+    //self.nave = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(moveNave) userInfo:nil repeats:YES];
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval:self.faceShifterTempo target:self selector:@selector(geraFaceShifter) userInfo:nil repeats:YES];
     self.edTimer = [NSTimer scheduledTimerWithTimeInterval:self.edTempo target:self selector:@selector(geraEd) userInfo:nil repeats:YES];
 }
@@ -248,21 +243,21 @@
 }
 
 // CRIA A ANIMACAO DA NAVE QUE SE MOVE DURANTE O JOGO
-
--(void) moveNave
-{
-    
-    if(self.spaceship.center.x > self.view.frame.size.width)
-        self.translacao = -self.translacao;
-    else if(self.spaceship.center.x <= 0)
-        self.translacao = -self.translacao;
-    
-    self.spaceship.center = CGPointMake(self.spaceship.center.x + self.translacao, self.spaceship.center.y);
-    
-    [self.view addSubview:self.spaceship];
-    
-}
-
+/*
+ -(void) moveNave
+ {
+ 
+ if(self.spaceship.center.x > self.view.frame.size.width)
+ self.translacao = -self.translacao;
+ else if(self.spaceship.center.x <= 0)
+ self.translacao = -self.translacao;
+ 
+ self.spaceship.center = CGPointMake(self.spaceship.center.x + self.translacao, self.spaceship.center.y);
+ 
+ [self.view addSubview:self.spaceship];
+ 
+ }
+ */
 // METODOS USADOS PARA GERAR E TRATAR O ED
 
 -(void)geraEd
@@ -272,21 +267,13 @@
     [self.edImage removeFromSuperview];
     self.edAcertou = 0;
     self.edImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"ED_SF3"]];
-    int randomPosition = arc4random()%9;
-    
-    while (randomPosition == self.faceShifterPosition)
-    {
-        randomPosition = arc4random()%9;
-    }
-    //    while((p.origin.x == self.faceShifterImage.frame.origin.x )&& (p.origin.y == self.faceShifterImage.frame.origin.y))
-    //    {
-    //        val = [self.array objectAtIndex:arc4random()%9];
-    //        p = [val CGRectValue];
-    //    }
-    
-    self.edPosition = randomPosition;
-    NSValue *val = [self.array objectAtIndex:randomPosition];
+    NSValue *val = [self.array objectAtIndex:arc4random()%9];
     CGRect p = [val CGRectValue];
+    while((p.origin.x == self.faceShifterImage.frame.origin.x )&& (p.origin.y == self.faceShifterImage.frame.origin.y))
+    {
+        val = [self.array objectAtIndex:arc4random()%9];
+        p = [val CGRectValue];
+    }
     self.edImage.frame = p;
     [self.view addSubview:self.edImage];
     self.edImage.userInteractionEnabled = YES;
@@ -344,7 +331,6 @@
 {
     if(![self.martelo isAnimating] && self.marteloCount == 1)
     {
-        self.edPosition = 10;
         [self.removeEdTimer invalidate];
         [self.edImage removeFromSuperview];
         [self perdeVida];
@@ -375,18 +361,15 @@
         [self.faceShifterImage removeFromSuperview];
         self.faceShifterAcertou = 0;
         self.faceShifterImage = [[UIImageView alloc]initWithImage:self.faceShifterActualImage.image ];
-        
-        int randomPosition = arc4random()%9;
-        
-        while (randomPosition == self.edPosition)
+        NSValue *val = [self.array objectAtIndex:arc4random()%9];
+        CGRect p = [val CGRectValue];
+        while((p.origin.x == self.edImage.frame.origin.x )&& (p.origin.y == self.edImage.frame.origin.y))
         {
-            randomPosition = arc4random()%9;
+            val = [self.array objectAtIndex:arc4random()%9];
+            p = [val CGRectValue];
         }
         
-        self.faceShifterPosition = randomPosition;
         
-        NSValue *val = [self.array objectAtIndex:randomPosition];
-        CGRect p = [val CGRectValue];
         self.faceShifterImage.frame = p;
         [self.view addSubview:self.faceShifterImage];
         self.faceShifterImage.userInteractionEnabled = YES;
@@ -437,14 +420,15 @@
     self.marteloCount = 1;
     [self.martelo startAnimating];
     
-    self.faceShifterImage.image = [UIImage imageNamed:@"Mini_Dead_Shifter.png"];
+    self.faceShifterImage.image = [UIImage imageNamed:@"MF_SF8.png"];
+    
+    
 }
 
 -(void)shouldRemoveFaceShifter
 {
     if(![self.martelo isAnimating] && self.marteloCount == 1)
     {
-        self.faceShifterPosition = 10;
         [self.removeFaceShifterTimer invalidate];
         [self.faceShifterImage removeFromSuperview];
     }
@@ -537,6 +521,7 @@
         self.save.center = CGPointMake(self.view.center.x, self.view.frame.size.height/2);
         [self.save setTitle:@"Save" forState:UIControlStateNormal];
         self.save.backgroundColor = [UIColor clearColor];
+        [self.save setTitleColor:[UIColor colorWithRed:49/255.0 green:79/255.0 blue:79/255.0 alpha:1.0] forState:UIControlStateNormal];
         [self.view addSubview:self.save];
         [self.save addTarget:self action:@selector(salva) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -720,7 +705,7 @@
     self.label.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.label];
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval:self.faceShifterTempo target:self selector:@selector(geraFaceShifter) userInfo:nil repeats:YES];
-    self.nave = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(moveNave) userInfo:nil repeats:YES];
+    // self.nave = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(moveNave) userInfo:nil repeats:YES];
     self.edTimer = [NSTimer scheduledTimerWithTimeInterval:self.edTempo target:self selector:@selector(geraEd) userInfo:nil repeats:YES];
 }
 
@@ -733,7 +718,7 @@
     self.faceShifterImage.userInteractionEnabled = YES;
     self.play_pause.tag = PLAYTAG;
     self.myTimer = [NSTimer scheduledTimerWithTimeInterval:self.faceShifterTempo target:self selector:@selector(geraFaceShifter) userInfo:nil repeats:YES];
-    self.nave = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(moveNave) userInfo:nil repeats:YES];
+    //  self.nave = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(moveNave) userInfo:nil repeats:YES];
     self.edTimer = [NSTimer scheduledTimerWithTimeInterval:self.edTempo target:self selector:@selector(geraEd) userInfo:nil repeats:YES];
 }
 
