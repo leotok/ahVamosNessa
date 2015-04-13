@@ -48,7 +48,7 @@
             [self.settings removeAllObjects];
         }
         [self.settings addObject:@"0"];   // 0 - primeira vez / 1 - ja viu cinematics
-        [self.settings addObject:@"0"]; // 0 - nao liberou 2a fase / 1 - liberou
+        [self.settings addObject:@"1"]; // 0 - nao liberou 2a fase / 1 - liberou
         [self.settings addObject:@"1"]; // 0 - nao liberou 3a fase / 1 - liberou
     }
     
