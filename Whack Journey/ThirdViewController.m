@@ -41,6 +41,8 @@
         self.dict = [[NSMutableDictionary alloc] init];
     else
         self.settings = [NSMutableArray arrayWithArray:[self.dict objectForKey:@"settings"]];
+    
+    /* conserta crash do play*/
     if ([self.settings count] < 3)
     {
         if ([self.settings count] != 0)
