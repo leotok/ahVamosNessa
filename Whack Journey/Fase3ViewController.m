@@ -135,15 +135,15 @@
     // array com as possíveis posições da toupeira
     
     self.array = [NSArray arrayWithObjects:
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/20, self.view.frame.size.height/2.5,self.view.frame.size.width/4,self.view.frame.size.height/7.1)], //
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/20, self.view.frame.size.height/5.6,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],//
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.4, self.view.frame.size.height/2.24,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],//
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/3.3, self.view.frame.size.height/2,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],//
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/20, self.view.frame.size.height/2.5,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/20, self.view.frame.size.height/5.6,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.4, self.view.frame.size.height/2.24,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/3.3, self.view.frame.size.height/2,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
                   [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.4, self.view.frame.size.height/1.6,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/18, self.view.frame.size.height/1.46,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.83, self.view.frame.size.height/1.55,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/3.3, self.view.frame.size.height/1.28,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
-                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.47, self.view.frame.size.height/1.33,self.view.frame.size.width/4,self.view.frame.size.height/7.1)], nil];
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/13, self.view.frame.size.height/1.6,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/2.95, self.view.frame.size.height/1.43,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/13.0, self.view.frame.size.height/1.27,self.view.frame.size.width/4,self.view.frame.size.height/7.1)],
+                  [NSValue valueWithCGRect:CGRectMake(self.view.frame.size.width/1.38, self.view.frame.size.height/1.28,self.view.frame.size.width/4,self.view.frame.size.height/7.1)], nil];
     
     // adiciona tudo a view
     
@@ -275,7 +275,7 @@
     {
         randomPosition = arc4random()%9;
     }
-    randomPosition = 4;
+    randomPosition = 8;
     self.edPosition = randomPosition;
     NSValue *val = [self.array objectAtIndex:randomPosition];
     CGRect p = [val CGRectValue];
