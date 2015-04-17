@@ -16,6 +16,7 @@
 @property int edAcertou;
 @property int edPosition;
 @property int contador;
+@property int lastContador;
 @property int faceShifterAcertou;
 @property int faceShifterCount;
 @property int faceShifterPosition;
@@ -187,7 +188,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    
+    self.lastContador = 0;
     self.contador=0;
     self.edCount = 0;
     self.edAcertou = 0;
@@ -196,7 +197,7 @@
     self.faceShifterAcertou = 1;
     self.faceShifterTempo = 0;
     self.vidas = 3;
-    self.scoreToWin = 400;
+    self.scoreToWin = 450;
     self.marteloCount = 0;
     
     // verifica a dificuldade escolhida e define o tempo de aparição da toupeira
@@ -357,8 +358,9 @@
     
     if (self.vidas > 0)
     {
-        if (self.contador  % 65 == 0 && self.faceShifterTempo > 0.6)
+        if ( self.lastContador != self.contador && self.contador  % 65 == 0 && self.faceShifterTempo > 0.6 )
         {
+            self.lastContador = self.contador;
             [self aumentaDificuldade];
         }
         
@@ -519,6 +521,7 @@
         [self.view addSubview:self.imagem];
         
         self.highscoreName = [[UITextField alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width/2.133, self.view.frame.size.height/18.933)];
+        self.highscoreName.autocorrectionType = UITextAutocorrectionTypeNo;
         self.highscoreName.center = CGPointMake(self.view.center.x, self.view.frame.size.height/3);
         self.highscoreName.delegate = self;
         self.highscoreName.placeholder = @"Your name";

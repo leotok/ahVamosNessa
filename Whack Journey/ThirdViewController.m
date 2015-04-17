@@ -50,8 +50,8 @@
             [self.settings removeAllObjects];
         }
         [self.settings addObject:@"0"];   // 0 - primeira vez / 1 - ja viu cinematics
-        [self.settings addObject:@"1"]; // 0 - nao liberou 2a fase / 1 - liberou
-        [self.settings addObject:@"1"]; // 0 - nao liberou 3a fase / 1 - liberou
+        [self.settings addObject:@"0"]; // 0 - nao liberou 2a fase / 1 - liberou
+        [self.settings addObject:@"0"]; // 0 - nao liberou 3a fase / 1 - liberou
     }
     
     // imagens e labels
@@ -112,6 +112,7 @@
     
     
     UIButton *back = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width/32, self.view.frame.size.height/56.8, self.view.frame.size.width/10.667, self.view.frame.size.height/18.933)];
+    [back setImage:[UIImage imageNamed:@"Levels_BackB"] forState:UIControlStateNormal];
     [back addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     
     

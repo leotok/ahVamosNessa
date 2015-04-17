@@ -455,7 +455,6 @@
 				3F903E551A9CF4FD003EB43B /* Defeated */,
 				0CF115D61A97BF3600FBDFD2 /* blackface.png */,
 				0CF115D51A97BEE600FBDFD2 /* Icones */,
-				0CF115561A97BE8300FBDFD2 /* Level_1 */,
 				0CF114B21A97BE6300FBDFD2 /* Highscore */,
 				0CF114B51A97BE6300FBDFD2 /* Icone */,
 				0CF114D31A97BE6300FBDFD2 /* Levels */,
@@ -644,6 +643,7 @@
 		0CF114D31A97BE6300FBDFD2 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				0CF115561A97BE8300FBDFD2 /* Level_1 */,
 				3F81AF901AC08360009CDDEA /* Level_3 */,
 				3F81AF831AC080B9009CDDEA /* Level_2 */,
 				0CD2B96A1A9FA1A200EF2A20 /* SlotLocked2.png */,
@@ -840,7 +840,8 @@
 				0CF1158A1A97BE8300FBDFD2 /* PopUp Menu */,
 				0CF1158E1A97BE8300FBDFD2 /* Whack_Animation */,
 			);
-			path = Level_1;
+			name = Level_1;
+			path = ../Level_1;
 			sourceTree = "<group>";
 		};
 		0CF115571A97BE8300FBDFD2 /* ED_Animation */ = {
