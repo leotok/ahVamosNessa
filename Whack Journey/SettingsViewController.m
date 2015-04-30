@@ -17,6 +17,7 @@
 @property UIImageView *display;
 @property UIImageView *tempoDisplay;
 @property UIImageView *camera;
+@property UIImagePickerController *picker;
 
 @end
 
@@ -152,11 +153,16 @@
     
    //[audioSession setActive:YES error:nil];
     
-    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-    AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute,               // trecho de código que resolveu problema do som
-                            sizeof(audioRouteOverride), &audioRouteOverride);
+//    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+//    AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute,               // trecho de código que resolveu problema do som
+//                            sizeof(audioRouteOverride), &audioRouteOverride);
     
-    
+    NSError *setCategoryError = nil;
+    if (![audioSession setCategory:AVAudioSessionCategoryPlayback
+                  withOptions:AVAudioSessionCategoryOptionMixWithOthers
+                        error:&setCategoryError]) {
+        // handle error
+    }
     
     audioRecorder = [[AVAudioRecorder alloc]
                      initWithURL:soundFileURL
@@ -285,19 +291,25 @@
 
 - (void)takePhoto:(UIButton *)sender {
     
-    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
-    picker.delegate = self;
-    picker.allowsEditing = YES;
-    picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    picker.showsCameraControls = YES;
+    self.picker = [[UIImagePickerController alloc] init];
+    self.picker.delegate = self;
+    self.picker.allowsEditing = YES;
+    self.picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    self.picker.showsCameraControls = YES;
     UIImageView *toupeira = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width/1.48, self.view.frame.size.height/2.254)];
     toupeira.center = CGPointMake(self.view.center.x -10, self.view.center.y);
     toupeira.image = [UIImage imageNamed:@"faceshifter_no_face.png"];
-    picker.cameraOverlayView = toupeira;
+    UIGestureRecognizer *takePicButton = [[UIGestureRecognizer alloc]initWithTarget:self action:@selector(overlayTakePic)];
+    [toupeira addGestureRecognizer:takePicButton];
+    self.picker.cameraOverlayView = toupeira;
     
-    [self presentViewController:picker animated:YES completion:NULL];
+    [self presentViewController:self.picker animated:YES completion:NULL];
 }
 
+- (void) overlayTakePic
+{
+    [self.picker takePicture];
+}
 
 
 - (UIImage*) maskImage:(UIImage *)image withMask:(UIImage *)maskImage {

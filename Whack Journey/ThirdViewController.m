@@ -12,6 +12,8 @@
 @property NSMutableArray *nomes;
 @property NSMutableDictionary *dict;
 @property NSMutableArray *settings;
+@property UIImageView *nameLabelMedio;
+@property UIImageView *nameLabelDificil;
 
 @end
 
@@ -88,6 +90,10 @@
     {
         [medio setImage:[UIImage imageNamed:@"Levels_Fase2Open_Button.png"] forState:UIControlStateNormal];
         medio.enabled = YES;
+        self.nameLabelMedio = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 80 ,15)];
+        self.nameLabelMedio.center = medio.center;
+        [self.nameLabelMedio setImage:[UIImage imageNamed:@"Tizzard@2x"]];
+
     }
     else
     {
@@ -103,6 +109,9 @@
     {
         [dificil setImage:[UIImage imageNamed:@"Levels_Fase3Open_Button.png"] forState:UIControlStateNormal];
         dificil.enabled = YES;
+        self.nameLabelDificil = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50 ,15)];
+        self.nameLabelDificil.center = dificil.center;
+        [self.nameLabelDificil setImage:[UIImage imageNamed:@"Ornix@2x"]];
     }
     else
     {
@@ -123,6 +132,8 @@
     [self.view addSubview:facil];
     [self.view addSubview:medio];
     [self.view addSubview:dificil];
+    [self.view addSubview:self.nameLabelMedio];
+    [self.view addSubview:self.nameLabelDificil ];
     [self.view addSubview:back];
     
 }

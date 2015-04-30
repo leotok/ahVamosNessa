@@ -202,21 +202,10 @@
     
     // verifica a dificuldade escolhida e define o tempo de aparição da toupeira
     
-    if(self.difficulty == 0)
-    {
-        self.faceShifterTempo = 1.5;
-        self.edTempo = 2.0;
-    }
-    else if(self.difficulty == 1)
-    {
-        self.faceShifterTempo = 1.3;
-        self.edTempo = 1.5;
-    }
-    else
-    {
+
         self.faceShifterTempo = 1.1;
         self.edTempo = 1;
-    }
+    
     
     // cria timers (actions) do faceshifter, ed e nave
     
@@ -276,7 +265,7 @@
     {
         randomPosition = arc4random()%9;
     }
-    randomPosition = 8;
+    
     self.edPosition = randomPosition;
     NSValue *val = [self.array objectAtIndex:randomPosition];
     CGRect p = [val CGRectValue];
