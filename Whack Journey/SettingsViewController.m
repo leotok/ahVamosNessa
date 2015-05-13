@@ -153,16 +153,17 @@
     
    //[audioSession setActive:YES error:nil];
     
-//    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
-//    AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute,               // trecho de código que resolveu problema do som
-//                            sizeof(audioRouteOverride), &audioRouteOverride);
+    UInt32 audioRouteOverride = kAudioSessionOverrideAudioRoute_Speaker;
+    AudioSessionSetProperty(kAudioSessionProperty_OverrideAudioRoute,               // trecho de código que resolveu problema do som
+                            sizeof(audioRouteOverride), &audioRouteOverride);
     
-    NSError *setCategoryError = nil;
-    if (![audioSession setCategory:AVAudioSessionCategoryPlayback
-                  withOptions:AVAudioSessionCategoryOptionMixWithOthers
-                        error:&setCategoryError]) {
-        // handle error
-    }
+    
+    
+//    NSError *setCategoryError = nil;
+//    if (![audioSession setCategory:AVAudioSessionCategoryPlayback
+//                  withOptions:AVAudioSessionCategoryOptionMixWithOthers   // este trecho causou a falha na gravação de voz
+//                        error:&setCategoryError]) {
+//    }
     
     audioRecorder = [[AVAudioRecorder alloc]
                      initWithURL:soundFileURL
